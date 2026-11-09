@@ -17,4 +17,6 @@ def ask(
     try:
         return service.ask(payload.question)
     except LLMServiceError as exc:
-        raise HTTPException(status.HTTP_502_BAD_GATEWAY, f"OpenAI error: {exc}") from exc
+        raise HTTPException(
+            status.HTTP_502_BAD_GATEWAY, f"OpenAI error: {exc}"
+        ) from exc

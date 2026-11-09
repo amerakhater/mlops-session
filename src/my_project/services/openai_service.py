@@ -14,7 +14,11 @@ class LLMServiceError(Exception):
 
 class OpenAIService:
     def __init__(self, settings: Settings) -> None:
-        api_key = settings.openai_api_key.get_secret_value() if settings.openai_api_key else ""
+        api_key = (
+            settings.openai_api_key.get_secret_value()
+            if settings.openai_api_key
+            else ""
+        )
         if not api_key.strip():
             raise LLMNotConfiguredError("OPENAI_API_KEY is not set")
         self.client = OpenAI(api_key=api_key)

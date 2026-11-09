@@ -1,4 +1,4 @@
-from functools import lru_cache
+﻿from functools import lru_cache
 
 from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     database_url: str = Field(
-        default="postgresql+psycopg://postgres:postgres@localhost:5432/app",
+        default="postgresql+psycopg://postgres:postgres@localhost:55432/app",
         description="SQLAlchemy URL for the Postgres database",
     )
     openai_api_key: SecretStr | None = None

@@ -37,3 +37,19 @@ src/my_project/
   api/routes/            HTTP endpoints only
   main.py                app setup
 ```
+
+## CI
+
+[.github/workflows/ci.yml](.github/workflows/ci.yml) runs on pushes to main/development/testing and on every PR:
+
+1. **Lint**: `ruff check` + `ruff format --check`
+2. **Tests**: `pytest` against a Postgres service container (OpenAI is faked)
+3. **Docker**: `docker compose up --build --wait` + smoke-test the API
+
+Run the same checks locally (Postgres from compose is on host port 55432):
+
+```bash
+docker compose up -d db
+uv run ruff check . && uv run ruff format --check . && uv run pytest
+```
+
